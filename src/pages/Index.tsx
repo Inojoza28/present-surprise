@@ -117,7 +117,7 @@ const Index = () => {
       setRevealMessage(null);
       setOpenedCount((c) => c + 1);
       setIsProcessing(false);
-    }, 4500);
+    }, 5500);
   }, [isProcessing, attempts, openedCount]);
 
   const handleFinalSequence = useCallback(() => {
@@ -357,43 +357,41 @@ const Index = () => {
       {/* PRIZE PHASE */}
       {phase === "prize" && showPrize && (
         <div
-          className="flex flex-col items-center justify-center text-center gap-6"
-          style={{ animation: "fade-up-in 0.8s ease-out" }}
+          className="flex flex-col items-center justify-center text-center gap-8"
+          style={{ animation: "fade-up-in 1s ease-out" }}
         >
-          <div className="text-8xl sm:text-9xl mb-4" style={{ animation: "fade-up-in 0.6s ease-out" }}>
-            🎉
-          </div>
-          <h2
-            className="text-4xl sm:text-5xl font-black text-gradient-gold mb-6"
-            style={{ animation: "prize-glow 2s ease-in-out infinite" }}
+          <p
+            className="text-muted-foreground text-base tracking-widest uppercase font-semibold"
+            style={{ animation: "fade-up-in 0.8s ease-out 0.2s both" }}
           >
-            Parabéns!
-          </h2>
-          <div
-            className="relative bg-card rounded-3xl px-10 py-10 shadow-2xl border-2 border-accent/50 glow-soft overflow-hidden"
-            style={{ animation: "fade-up-in 0.8s ease-out 0.3s both" }}
-          >
-            {/* Decorative gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-primary/10 pointer-events-none" />
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-1.5 rounded-full bg-gradient-to-r from-transparent via-accent/60 to-transparent" />
-            
-            <p className="relative text-lg sm:text-xl font-bold text-muted-foreground tracking-wide uppercase">
-              Você ganhou
-            </p>
+            Parabéns! 🎉
+          </p>
+
+          <div style={{ animation: "fade-up-in 1s ease-out 0.6s both" }}>
             <p
-              className="relative text-6xl sm:text-7xl font-black text-gradient-gold my-4"
-              style={{ animation: "prize-glow 2s ease-in-out infinite" }}
+              className="text-7xl sm:text-8xl font-black text-gradient-gold"
+              style={{ animation: "prize-glow 2.5s ease-in-out infinite" }}
             >
               R$150
             </p>
-            <p className="relative text-2xl sm:text-3xl font-black text-foreground flex items-center justify-center gap-2">
-              no Pix! <span className="text-3xl">💸</span>
-            </p>
-            
-            {/* Bottom decorative bar */}
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-40 h-1.5 rounded-full bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
           </div>
-          <p className="text-muted-foreground text-sm mt-6" style={{ animation: "fade-up-in 1s ease-out 1.5s both" }}>
+
+          <p
+            className="text-xl sm:text-2xl font-bold text-foreground/80"
+            style={{ animation: "fade-up-in 0.8s ease-out 1s both" }}
+          >
+            no Pix 💸
+          </p>
+
+          <div
+            className="w-16 h-0.5 rounded-full bg-gradient-to-r from-transparent via-accent/60 to-transparent"
+            style={{ animation: "fade-up-in 0.8s ease-out 1.4s both" }}
+          />
+
+          <p
+            className="text-muted-foreground text-sm"
+            style={{ animation: "fade-up-in 1s ease-out 2s both" }}
+          >
             Aguarde um instante… ✨
           </p>
 
