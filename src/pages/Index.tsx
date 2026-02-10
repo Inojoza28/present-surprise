@@ -26,7 +26,7 @@ const REVEAL_SEQUENCE: RevealData[] = [
   { message: "Um abraço bem apertado pra você! 🤗", emoji: "🫂", type: "hug" },
   { message: "Você ganhou +2 tentativas! 🎉", emoji: "🎰", type: "bonus" },
   { message: "Um beijo com muito carinho! 💋", emoji: "😘", type: "kiss" },
-  { message: "Agora é tudo ou nada… última chance 😳", emoji: "😰", type: "tension" },
+  { message: "Que sorte! Você ganhou mais uma tentativa! 🍀", emoji: "🎰", type: "tension" },
   { message: "", emoji: "🏆", type: "final" },
 ];
 
@@ -314,8 +314,8 @@ const Index = () => {
                   </p>
                 )}
                 {revealMessage.type === "tension" && (
-                  <p className="text-sm text-primary/70 mt-3 font-semibold" style={{ animation: "shake 0.5s ease-in-out 0.8s both" }}>
-                    Respira fundo… 🫣
+                  <p className="text-sm text-muted-foreground mt-3 font-semibold" style={{ animation: "fade-up-in 0.8s ease-out 0.8s both" }}>
+                    Agora é tudo ou nada… 😳
                   </p>
                 )}
 
@@ -360,31 +360,40 @@ const Index = () => {
           className="flex flex-col items-center justify-center text-center gap-6"
           style={{ animation: "fade-up-in 0.8s ease-out" }}
         >
-          <div className="text-7xl sm:text-8xl mb-2">🎉</div>
+          <div className="text-8xl sm:text-9xl mb-4" style={{ animation: "fade-up-in 0.6s ease-out" }}>
+            🎉
+          </div>
           <h2
-            className="text-4xl sm:text-5xl font-black text-gradient-gold"
+            className="text-4xl sm:text-5xl font-black text-gradient-gold mb-6"
             style={{ animation: "prize-glow 2s ease-in-out infinite" }}
           >
             Parabéns!
           </h2>
           <div
-            className="bg-card rounded-3xl p-8 shadow-2xl border border-border glow-soft"
-            style={{ animation: "gift-pulse 3s ease-in-out infinite" }}
+            className="relative bg-card rounded-3xl px-10 py-10 shadow-2xl border-2 border-accent/50 glow-soft overflow-hidden"
+            style={{ animation: "fade-up-in 0.8s ease-out 0.3s both" }}
           >
-            <p className="text-2xl sm:text-3xl font-black text-foreground">
+            {/* Decorative gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-primary/10 pointer-events-none" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-1.5 rounded-full bg-gradient-to-r from-transparent via-accent/60 to-transparent" />
+            
+            <p className="relative text-lg sm:text-xl font-bold text-muted-foreground tracking-wide uppercase">
               Você ganhou
             </p>
             <p
-              className="text-5xl sm:text-6xl font-black text-gradient-gold mt-2"
+              className="relative text-6xl sm:text-7xl font-black text-gradient-gold my-4"
               style={{ animation: "prize-glow 2s ease-in-out infinite" }}
             >
               R$150
             </p>
-            <p className="text-2xl sm:text-3xl font-black text-foreground mt-1">
-              no Pix! 🎉
+            <p className="relative text-2xl sm:text-3xl font-black text-foreground flex items-center justify-center gap-2">
+              no Pix! <span className="text-3xl">💸</span>
             </p>
+            
+            {/* Bottom decorative bar */}
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-40 h-1.5 rounded-full bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
           </div>
-          <p className="text-muted-foreground text-sm mt-4" style={{ animation: "fade-up-in 2s ease-out" }}>
+          <p className="text-muted-foreground text-sm mt-6" style={{ animation: "fade-up-in 1s ease-out 1.5s both" }}>
             Aguarde um instante… ✨
           </p>
 
