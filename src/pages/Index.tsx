@@ -111,13 +111,13 @@ const Index = () => {
       if (navigator.vibrate) navigator.vibrate(200);
     }
 
-    // Hide reveal after delay
+    // Hide reveal after delay (longer for emotional impact)
     setTimeout(() => {
       setShowReveal(false);
       setRevealMessage(null);
       setOpenedCount((c) => c + 1);
       setIsProcessing(false);
-    }, 2500);
+    }, 4500);
   }, [isProcessing, attempts, openedCount]);
 
   const handleFinalSequence = useCallback(() => {
@@ -259,15 +259,76 @@ const Index = () => {
           {/* Reveal overlay */}
           {showReveal && revealMessage && (
             <div
-              className="fixed inset-0 z-40 flex items-center justify-center bg-foreground/20 backdrop-blur-sm"
-              style={{ animation: "fade-up-in 0.3s ease-out" }}
+              className="fixed inset-0 z-40 flex items-center justify-center bg-foreground/30 backdrop-blur-md"
+              style={{ animation: "fade-up-in 0.5s ease-out" }}
             >
               <div
-                className="bg-card rounded-3xl p-8 mx-4 max-w-sm text-center shadow-2xl border border-border"
-                style={{ animation: "fade-up-in 0.4s ease-out" }}
+                className={`
+                  bg-card rounded-3xl px-8 py-10 mx-4 max-w-sm w-full text-center 
+                  shadow-2xl border-2 border-border relative overflow-hidden
+                  ${revealMessage.type === "bonus" ? "border-accent glow-soft" : ""}
+                  ${revealMessage.type === "tension" ? "border-primary" : ""}
+                `}
+                style={{ animation: "fade-up-in 0.6s ease-out" }}
               >
-                <div className="text-6xl mb-4">{revealMessage.emoji}</div>
-                <p className="text-xl font-bold text-foreground">{revealMessage.message}</p>
+                {/* Decorative top glow */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-1 rounded-full bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+                
+                <div
+                  className="text-7xl mb-5"
+                  style={{ animation: "fade-up-in 0.8s ease-out 0.2s both" }}
+                >
+                  {revealMessage.emoji}
+                </div>
+                <p
+                  className={`
+                    text-xl sm:text-2xl font-extrabold leading-relaxed
+                    ${revealMessage.type === "empty" ? "text-muted-foreground" : "text-foreground"}
+                    ${revealMessage.type === "bonus" ? "text-gradient-gold" : ""}
+                    ${revealMessage.type === "tension" ? "text-primary" : ""}
+                  `}
+                  style={{ animation: "fade-up-in 0.8s ease-out 0.4s both" }}
+                >
+                  {revealMessage.message}
+                </p>
+
+                {/* Subtitle per type */}
+                {revealMessage.type === "empty" && (
+                  <p className="text-sm text-muted-foreground mt-3" style={{ animation: "fade-up-in 0.8s ease-out 0.8s both" }}>
+                    Não desanime, ainda tem mais! 💪
+                  </p>
+                )}
+                {revealMessage.type === "hug" && (
+                  <p className="text-sm text-muted-foreground mt-3" style={{ animation: "fade-up-in 0.8s ease-out 0.8s both" }}>
+                    Sinta esse carinho de longe 💕
+                  </p>
+                )}
+                {revealMessage.type === "bonus" && (
+                  <p className="text-sm text-muted-foreground mt-3" style={{ animation: "fade-up-in 0.8s ease-out 0.8s both" }}>
+                    A sorte está do seu lado! 🍀
+                  </p>
+                )}
+                {revealMessage.type === "kiss" && (
+                  <p className="text-sm text-muted-foreground mt-3" style={{ animation: "fade-up-in 0.8s ease-out 0.8s both" }}>
+                    Feito com muito amor 💝
+                  </p>
+                )}
+                {revealMessage.type === "tension" && (
+                  <p className="text-sm text-primary/70 mt-3 font-semibold" style={{ animation: "shake 0.5s ease-in-out 0.8s both" }}>
+                    Respira fundo… 🫣
+                  </p>
+                )}
+
+                {/* Bottom decorative dots */}
+                <div className="flex justify-center gap-1.5 mt-5">
+                  {[...Array(3)].map((_, i) => (
+                    <div
+                      key={i}
+                      className="w-1.5 h-1.5 rounded-full bg-primary/30"
+                      style={{ animation: `gift-pulse 1.5s ease-in-out ${i * 0.2}s infinite` }}
+                    />
+                  ))}
+                </div>
               </div>
             </div>
           )}
