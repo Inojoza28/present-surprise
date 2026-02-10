@@ -162,7 +162,7 @@ const Index = () => {
                     setTimeout(() => {
                       window.location.href = "https://youtu.be/PMKrAU1IlnA?si=YB_78rDIzfhzC33Z";
                     }, 1500);
-                  }, 10000);
+                  }, 18000);
                 }, 1200);
               }
             }, 80);
